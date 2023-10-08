@@ -44,7 +44,7 @@ public class TestSecurity {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeHttpRequests((requests) -> requests
-                        .requestMatchers("/", "/welcome", "/authenticate").permitAll()
+                        .requestMatchers("/", "/welcome", "/authenticate", "/graphiql", "/graphql").permitAll()
                         .anyRequest().authenticated()
                 )
 //                .exceptionHandling().authenticationEntryPoint(jwtEntryPoint).and().sessionManagement()

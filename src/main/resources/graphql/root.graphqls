@@ -1,0 +1,58 @@
+scalar DateTime
+
+type Location {
+    id: ID!
+    name: String!
+    street: String
+    city: String
+    state: String
+    comments: String
+}
+
+type Event {
+    id: ID!
+    name: String!
+    start: DateTime
+    end: DateTime
+    desc: String
+    #    org: Org!
+    location: Location!
+    #    admin: OrgAdmin
+}
+
+type Org {
+    id: ID!
+    name: String!
+}
+
+interface User {
+    id: ID!
+    name: String!
+    phone: String
+    email: String!
+}
+
+type OrgAdmin implements User {
+    id: ID!
+    name: String!
+    phone: String
+    email: String!
+    org: Org!
+}
+
+type RegularUser implements User {
+    id: ID!
+    name: String!
+    phone: String
+    email: String!
+}
+
+type Query {
+    events: [Event]!
+    locations: [Location]!
+}
+
+type Mutation {
+    createEvent(name: String!, locationId: String!, start: DateTime, end: DateTime): Event!
+    createLocation(name: String!): Event!
+}
